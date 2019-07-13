@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise // Feito somente para tirar a advertência 
-let stringConnectionDB = `mongodb+srv://${process.env.USER_MONGO}:${process.env.PASSWORD_MONGO}@cluster0-afjvm.mongodb.net/test?retryWrites=true&w=majority`
-//module.exports = mongoose.connect('mongodb://localhost/todo')
+ 
+let stringConnectionDB = 
+    process.env.NODE_ENV === 'production' ?
+    `mongodb+srv://${process.env.USER_MONGO}:${process.env.PASSWORD_MONGO}
+    @cluster0-afjvm.mongodb.net/test?retryWrites=true&w=majority`
+    : 'mongodb://localhost/todo'
+
 module.exports = mongoose
     .connect(stringConnectionDB, { useNewUrlParser: true })
     .then(() => {
