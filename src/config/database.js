@@ -3,8 +3,7 @@ mongoose.Promise = global.Promise // Feito somente para tirar a advertência
  
 let stringConnectionDB = 
     process.env.NODE_ENV === 'production' ?
-    `mongodb+srv://${process.env.USER_MONGO}:${process.env.PASSWORD_MONGO}
-    @cluster0-afjvm.mongodb.net/test?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.USER_MONGO}:${process.env.PASSWORD_MONGO}@cluster0-afjvm.mongodb.net/test?retryWrites=true&w=majority`
     : 'mongodb://localhost/todo'
 
 module.exports = mongoose
